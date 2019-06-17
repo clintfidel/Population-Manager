@@ -12,10 +12,10 @@ module.exports = {
       type: Sequelize.STRING
     },
     no_of_males: {
-      type: Sequelize.STRING
+      type: Sequelize.INTEGER
     },
     no_of_females: {
-      type: Sequelize.STRING
+      type: Sequelize.INTEGER
     },
     createdAt: {
       allowNull: false,
