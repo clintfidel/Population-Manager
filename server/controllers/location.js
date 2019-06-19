@@ -1,16 +1,17 @@
 /* eslint-disable camelcase */
 /* eslint-disable require-jsdoc */
-import database from '../models';
+import database from '../../models';
 
 const { Location } = database;
 
 class LocationController {
   static async addLocation(req, res) {
-    const { location, noOfmales, noOfFemales } = req.body;
+    const { location, noOfMales, noOfFemales } = req.body;
+    console.log(noOfMales, noOfFemales);
     const newLocation = await Location.create({
       location,
-      no_of_females: +noOfFemales,
-      no_of_males: +noOfmales
+      no_of_females: parseInt(noOfFemales, 10),
+      no_of_males: parseInt(noOfMales, 10)
     });
     return res.status(200).json({
       messgae: 'Location created successfully',
@@ -19,7 +20,7 @@ class LocationController {
     });
   }
 
-  static async getLocations(req, res) {
+  static async getOneLocation(req, res) {
     const { locationId } = req.params;
     const singleLocation = await Location.findOne({
       where: {
@@ -46,7 +47,7 @@ class LocationController {
     const allLocation = await Location.findAll({});
     let total = 0;
     if (allLocation) {
-      const sumTotal = allLocation.forEach(element => {
+      allLocation.forEach(element => {
         let females = element.no_of_females;
         let males = element.no_of_males;
         // eslint-disable-next-line no-return-assign
@@ -55,7 +56,7 @@ class LocationController {
       return res.status(200).json({
         message: 'Location retrieved successfully',
         status: true,
-        AllLocation: [...allLocation, sumTotal]
+        AllLocation: [...allLocation, { total: total }]
       });
     }
     return res.status(404).json({
