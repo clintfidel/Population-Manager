@@ -8,7 +8,8 @@
     "lint": "eslint ./ || true",
     "start-server": "NODE_ENV=development nodemon --watch  server --exec babel-node server.js",
     "unmigrate": "sequelize db:migrate:undo:all",
-    "migrate": "sequelize db:migrate"
+    "migrate": "sequelize db:migrate",
+    "server:test": "NODE_ENV=development nyc --reporter=html --reporter=text mocha --exit --timeout 15000 --require @babel/register server/tests || true"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,6 @@
   "homepage": "https://github.com/clintfidel/Population-Manager#readme",
   "dependencies": {
     "@babel/cli": "^7.4.3",
-    "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "babel-eslint": "^10.0.1",
     "body-parser": "^1.19.0",
@@ -30,14 +30,16 @@
     "dotenv": "^7.0.0",
     "eslint-config-react": "^1.1.7",
     "express": "^4.16.4",
+    "nyc": "^14.1.1",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.8.9",
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
     "@babel/node": "^7.2.2",
-    "@babel/register": "^7.4.0",
+    "@babel/register": "^7.4.4",
     "babel-jest": "^24.7.1",
     "babel-polyfill": "^6.26.0",
     "chai": "^4.2.0",
@@ -47,7 +49,9 @@
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
+    "expect": "^24.8.0",
     "jest": "^24.7.1",
+    "mocha": "^6.1.4",
     "nodemon": "^1.18.11",
     "supertest": "^4.0.2"
   }
