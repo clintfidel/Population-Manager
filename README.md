@@ -1,5 +1,5 @@
 # Population-Manager
-
+This is an application that manages population of residents in given locations, it keeps track of the total number of male and female for the specified location.
 
 ## Technologies Used
 
@@ -23,6 +23,16 @@
 8. Navigate to `localhost:3800` in your browser
 
 ```
+
+## Endpoints
+* [POST] /api/v1/location/create - To create location
+* [GET] /api/v1/location/all - Get all locations
+* [GET] /api/v1/location/one/:locationId - Get one location
+* [PUT] /api/v1/location/update/:locationId- To update location data
+* [DELETE] /api/v1/location/delete/:locationId- To delete location data
+
+
+
 
 ## Tests
 
