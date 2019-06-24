@@ -8,7 +8,6 @@ class LocationController {
   static async addLocation(req, res) {
     try {
       const { location, noOfMales, noOfFemales } = req.body;
-      console.log(noOfMales, noOfFemales);
       const newLocation = await Location.create({
         location,
         no_of_females: parseInt(noOfFemales, 10),
